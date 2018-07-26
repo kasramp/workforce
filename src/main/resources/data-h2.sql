@@ -1,0 +1,1 @@
+INSERT INTO account (username, password) VALUES ('admin', 'password'), ('user', 'password');
