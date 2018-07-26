@@ -11,7 +11,7 @@
 ## Package
     $ mvn clean package
     
-## Unit test onlu
+## Unit test only
     $ mvn clean test
     
 ## Unit and integration tests
