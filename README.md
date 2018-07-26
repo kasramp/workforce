@@ -1,3 +1,8 @@
+# Requirements
+
+- Java 8 or higher
+- maven
+- MySQL (if want to persist results), otherwise override `application.properties` to use H2 database (see below).
 # Run
 
 ## Developer profile
@@ -12,7 +17,6 @@
 ## Unit and integration tests
     $ mvn clean verify
 
-
 # Database configuration
 
 By default it uses database. However, it's configured in such a way that by override following environment variables 
@@ -21,8 +25,8 @@ can use H2 in memory database.
 - `DB_NAME`: override database name, `employee` is default.
 - `DB_USERNAME`: username of database. `root` is default.
 - `DB_PASSWORD`: password of database. `` is default.
-- `DB_PORT`: port of connection to database. `3306` is default
-- `JDBC_URL`: datasource url. `jdbc:mysql://localhost:3306/` is default.
+- `DB_HOST`: host of the database. `localhost` is default.
+- `DB_PORT`: port of connection to database. `3306` is default.
 - `JDBC_DRIVER`: driver of jdbc connection. Currently supports:
     - `com.mysql.jdbc.Driver` : MySQL jdbc driver [default].
     - `org.h2.Driver`: H2 in memory jdbc driver.
@@ -48,7 +52,14 @@ Hence, need to authenticate first. Authentication can be done via Swagger ui.
 - `/apidocs` redirects to `swagger-ui.html`
 - `swagger-ui.html` allows interaction with endpoints
 
+# Live instance
 
+A demo application is deployed to Heroku to ease testing:
+- [http://workforce.madadipouya.com/](http://workforce.madadipouya.com/)
+
+# Etc
+
+Currently the live instance is hooked to Travis-ci. Means all unit and integration tests run on every commit to master branch and also the Heroku instance automatically will get updated. 
 
 # Application design flows
 
