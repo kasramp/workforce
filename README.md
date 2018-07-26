@@ -61,7 +61,7 @@ A demo application is deployed to Heroku to ease testing:
 
 Currently the live instance is hooked to Travis-ci. Means all unit and integration tests run on every commit to master branch and also the Heroku instance automatically will get updated. 
 
-# Application design flows
+# Application design flaws
 
 - Entity classes are dual purpose, used as DTOs as well. In real production app, this should be avoided. Separate DTOs needed and can be mapped to Entities using mappers such as Orika.
 - Basic auth is not sufficient. It should be replaced with a better authentication solutions (OAuth, JWT). And currently, the password is not encoded.
