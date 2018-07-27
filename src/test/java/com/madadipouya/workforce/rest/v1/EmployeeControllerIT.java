@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Mock MVC tests. Simpliefied/lighweighted to test all corner cases
+ * Mock MVC tests. Simpliefied/lighweighted to test all corner cases slice test
  */
 //@TestPropertySource(locations = {"classpath:test.properties"})
 //@WithMockUser(username = "test", password = "test", roles = "USER")

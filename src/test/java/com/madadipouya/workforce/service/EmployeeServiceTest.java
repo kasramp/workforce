@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.persistence.EntityNotFoundException;
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class EmployeeServiceTest {
 
     @InjectMocks
@@ -64,7 +65,6 @@ public class EmployeeServiceTest {
         verify(employeeRepository, times(1)).findByUuid(employeeUuid);
         verify(employeeRepository, times(1)).existsByEmail(newEmployee.getEmail());
         Employee newEmployeeToPersist = employeeService.copyProperties(newEmployee, persistedOldEmployee);
-        when(employeeRepository.save(any(Employee.class))).thenReturn(newEmployeeToPersist);
         verify(employeeRepository, times(1)).save(newEmployeeToPersist);
     }
 
