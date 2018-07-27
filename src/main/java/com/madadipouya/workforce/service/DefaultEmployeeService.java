@@ -4,6 +4,7 @@ import com.madadipouya.workforce.model.Employee;
 import com.madadipouya.workforce.repository.EmployeeRepository;
 import com.madadipouya.workforce.service.exception.DuplicateEmailAddressException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -37,16 +38,19 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
+    @Cacheable("employees")
     public Optional<Employee> getEmployee(String employeeUuid) {
         return employeeRepository.findByUuid(employeeUuid);
     }
 
     @Override
+    @Cacheable("employees")
     public Optional<Employee> getEmployeeByEmail(String email) {
         return employeeRepository.findByEmail(email);
     }
 
     @Override
+    @Cacheable("employees")
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }

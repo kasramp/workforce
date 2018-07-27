@@ -160,6 +160,7 @@ public class EmployeeServiceTest {
         verify(employeeRepository, times(2)).existsByUuid(employeeUuid);
     }
 
+    // TODO replace with EmployeeBuilder
     private Employee createEmployee(String prefix) {
         List<String> hobbies = new ArrayList<>();
         hobbies.add(prefix + "Walking");
