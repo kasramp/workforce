@@ -4,6 +4,7 @@ import com.madadipouya.workforce.model.Employee;
 import com.madadipouya.workforce.repository.EmployeeRepository;
 import com.madadipouya.workforce.service.exception.DuplicateEmailAddressException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class DefaultEmployeeService implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
+    @CacheEvict(cacheNames = "employees", allEntries = true)
     @Override
     public Employee createEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
+    @CacheEvict(cacheNames = "employees", allEntries = true)
     @Override
     public Employee updateEmployee(String employeeUuid, Employee newEmployee) throws DuplicateEmailAddressException {
         Employee employee = getEmployee(employeeUuid).orElseThrow(() ->
@@ -50,16 +53,18 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-    @Cacheable("employees")
+    @Cacheable(cacheNames = "employees", key = "#root.methodName")
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
+    @CacheEvict(cacheNames = "employees", allEntries = true)
     @Override
     public void delete(Employee employee) {
         employeeRepository.delete(employee);
     }
 
+    @CacheEvict(cacheNames = "employees", allEntries = true)
     @Override
     public void delete(String employeeUuid) {
         if (!isEmployeeExist(employeeUuid)) {

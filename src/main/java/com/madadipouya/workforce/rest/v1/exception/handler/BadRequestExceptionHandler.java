@@ -54,7 +54,7 @@ public class BadRequestExceptionHandler implements RestExceptionHandler<BadReque
 
     private BadRequestResponse createResponse(Exception exception) {
         logger.info(exception.getMessage());
-        BadRequestResponse requestResponse = new BadRequestResponse("Unable to serialize the payload");
+        BadRequestResponse requestResponse = new BadRequestResponse("Unable to deserialize the payload");
         return requestResponse;
     }
 }
